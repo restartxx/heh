@@ -8,7 +8,9 @@
 
 use std::{error::Error, fs::File, process};
 
+#[cfg(not(target_os = "android"))]
 use arboard::Clipboard;
+
 use ratatui::crossterm::event::{self, Event, KeyEventKind};
 use ratatui::layout::Rect;
 use ratatui::Frame;
@@ -92,9 +94,14 @@ pub struct Data {
     /// The nibble that was last hovered from the drag.
     pub(crate) drag_nibble: Option<Nibble>,
 
+    #[cfg(not(target_os = "android"))]
     /// Copies label data to your clipboard.
     pub(crate) clipboard: Option<Clipboard>,
 
+    #[cfg(target_os = "android")]
+    /// No clipboard support on Android.
+    pub(crate) clipboard: Option<()>,
+    
     /// The editor that is currently selected. This editor will be refocused upon a popup closing.
     pub(crate) editor: Editor,
 
