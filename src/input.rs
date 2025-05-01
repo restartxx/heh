@@ -309,11 +309,9 @@ pub(crate) fn handle_mouse_input(app: &mut Application, mouse: MouseEvent) {
                 Window::Label(i) => {
                     if app.data.last_click == component {
                         // Put string into clipboard
-                        if let Some(clipboard) = app.data.clipboard.as_mut() {
-                            clipboard.set_text(app.labels[LABEL_TITLES[i]].clone()).unwrap();
-                            app.labels.notification = format!("{} copied!", LABEL_TITLES[i]);
-                        } else {
-                            app.labels.notification = String::from("Can't find clipboard!");
+                        #[cfg(target_os = "android")]
+                        {
+                        /// Deleted
                         }
                     }
                 }
