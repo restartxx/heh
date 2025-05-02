@@ -311,7 +311,7 @@ pub(crate) fn handle_mouse_input(app: &mut Application, mouse: MouseEvent) {
                         // Put string into clipboard
                         #[cfg(target_os = "android")]
                         {
-                        /// Deleted
+                        // Deleted
                         }
                     }
                 }
