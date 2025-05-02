@@ -198,8 +198,6 @@ impl Application {
                 drag_enabled: false,
                 last_drag: None,
                 drag_nibble: None,
-                #[cfg(not(target_os = "android"))]{
-                clipboard,}
                 editor: Editor::Hex,
                 actions: vec![],
                 search_term: String::new(),
