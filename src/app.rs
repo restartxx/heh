@@ -176,10 +176,11 @@ impl Application {
         }
 
         let mut labels = LabelHandler::new(&contents, offset);
+        #[cfg(not(target_os = "android"))]{
         let clipboard = Clipboard::new().ok();
         if clipboard.is_none() {
             labels.notification = String::from("Can't find clipboard!");
-        }
+        }}
 
         let display = ScreenHandler::new()?;
 
