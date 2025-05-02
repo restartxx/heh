@@ -176,11 +176,9 @@ impl Application {
         }
 
         let mut labels = LabelHandler::new(&contents, offset);
-        #[cfg(not(target_os = "android"))]{
-        let clipboard = Clipboard::new().ok();
-        if clipboard.is_none() {
-            labels.notification = String::from("Can't find clipboard!");
-        }}
+        
+        let clipboard = None;
+        labels.notification = String::from("Clipboard desabilitado");
 
         let display = ScreenHandler::new()?;
 
@@ -198,6 +196,7 @@ impl Application {
                 drag_enabled: false,
                 last_drag: None,
                 drag_nibble: None,
+                clipboard,
                 editor: Editor::Hex,
                 actions: vec![],
                 search_term: String::new(),
